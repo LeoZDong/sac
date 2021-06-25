@@ -1,0 +1,1 @@
+python train.py |& tee print_logs.txt

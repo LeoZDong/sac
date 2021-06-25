@@ -1,0 +1,76 @@
+2021-06-25 11:17:09.377641: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000
+2021-06-25 11:17:09.377702: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+INFO:absl:===== Arguments BEGIN =====
+name                 default
+env_name             HalfCheetah-v2
+use_tf_functions     True
+resume               False
+n_iter               3000000
+n_steps_per_iter     1
+batch_size           256
+n_collect_init       10000
+lr_critic            0.0003
+lr_actor             0.0003
+lr_alpha             0.0003
+tgt_tau              0.005
+tgt_update_period    1
+gamma                0.99
+r_scale              1
+n_collect_per_iter   1
+rb_len               1000000
+n_eval_eps           20
+eval_interval        10000
+train_ckpt_interval  50000
+policy_ckpt_interval 50000
+rb_ckpt_interval     50000
+log_interval         1
+summary_interval     1000
+summaries_flush_secs 10
+train_dir            /iris/u/leozdong/sac/train/default
+eval_dir             /iris/u/leozdong/sac/eval/default
+====== Arguments END ======
+2021-06-25 11:17:32.990615: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcuda.so.1
+2021-06-25 11:17:33.003139: E tensorflow/stream_executor/cuda/cuda_driver.cc:328] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2021-06-25 11:17:33.003186: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: iris2.stanford.edu
+2021-06-25 11:17:33.003194: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: iris2.stanford.edu
+2021-06-25 11:17:33.003302: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: 450.102.4
+2021-06-25 11:17:33.003352: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 450.102.4
+2021-06-25 11:17:33.003372: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:310] kernel version seems to match DSO: 450.102.4
+2021-06-25 11:17:33.003773: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py:382: ReplayBuffer.get_next (from tf_agents.replay_buffers.replay_buffer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `as_dataset(..., single_deterministic_pass=False) instead.
+WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py:382: ReplayBuffer.get_next (from tf_agents.replay_buffers.replay_buffer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `as_dataset(..., single_deterministic_pass=False) instead.
+2021-06-25 11:17:34.418468: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+2021-06-25 11:17:34.437439: I tensorflow/core/platform/profile_utils/cpu_utils.cc:114] CPU Frequency: 2300000000 Hz
+INFO:absl:Initializing replay buffer by collecting experience for 10000 steps with a random policy.
+WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tf_agents/drivers/dynamic_step_driver.py:206: calling while_loop_v2 (from tensorflow.python.ops.control_flow_ops) with back_prop=False is deprecated and will be removed in a future version.
+Instructions for updating:
+back_prop=False is deprecated. Consider using tf.stop_gradient instead.
+Instead of:
+results = tf.while_loop(c, b, vars, back_prop=False)
+Use:
+results = tf.nest.map_structure(tf.stop_gradient, tf.while_loop(c, b, vars))
+WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tf_agents/drivers/dynamic_step_driver.py:206: calling while_loop_v2 (from tensorflow.python.ops.control_flow_ops) with back_prop=False is deprecated and will be removed in a future version.
+Instructions for updating:
+back_prop=False is deprecated. Consider using tf.stop_gradient instead.
+Instead of:
+results = tf.while_loop(c, b, vars, back_prop=False)
+Use:
+results = tf.nest.map_structure(tf.stop_gradient, tf.while_loop(c, b, vars))
+INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default
+INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default/policy
+INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default/replay_buffer
+WARNING:tensorflow:From /sailhome/leozdong/.local/lib/python3.6/site-packages/tensorflow_probability/python/distributions/distribution.py:298: calling MultivariateNormalDiag.__init__ (from tensorflow_probability.python.distributions.mvn_diag) with scale_identity_multiplier is deprecated and will be removed after 2020-01-01.
+Instructions for updating:
+`scale_identity_multiplier` is deprecated; please combine it with `scale_diag` directly instead.
+WARNING:tensorflow:From /sailhome/leozdong/.local/lib/python3.6/site-packages/tensorflow_probability/python/distributions/distribution.py:298: calling MultivariateNormalDiag.__init__ (from tensorflow_probability.python.distributions.mvn_diag) with scale_identity_multiplier is deprecated and will be removed after 2020-01-01.
+Instructions for updating:
+`scale_identity_multiplier` is deprecated; please combine it with `scale_diag` directly instead.
+INFO:absl:step = 2, loss = 145.487
+INFO:absl:229.816 secs/step
+INFO:absl:step = 4, loss = 45.806
+INFO:absl:225.756 secs/step
