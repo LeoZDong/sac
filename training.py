@@ -59,7 +59,7 @@ class Trainer(object):
         
         #### Evaluation and checkpoints ####
         self.n_eval_eps = args.n_eval_eps
-        self.checkpointers = self.build_checkpointers(args)
+        self.checkpointer = self.build_checkpointers(args)
 
         ### Logging, visualization, and model saving ####
         self.train_summary_writer = tf.compat.v2.summary.create_file_writer(
@@ -75,8 +75,10 @@ class Trainer(object):
         start_time = time.time()
 
         # Collect data
+        t = time.time()
         self.collect_step()
         for i in range(self.n_steps_per_iter):
+            t = time.time()
             train_loss = self.train_step()
         
         # Gradient update
@@ -101,7 +103,14 @@ class Trainer(object):
     def eval_iter(self):
         """One iteration of evaluation."""
         eval_results = self.get_eval_results()
-        metric_utils.log_metrics(eval_results)
+
+        # Manually perform metric_utils.log_metrics(eval_results)
+        # the tf agent function does not work
+        log = []
+        for metric_name, metric_val in eval_results.items():
+            logging.info('{} = {}'.format(metric_name, metric_val.numpy()))
+        
+        # logging.info('%s \n\t\t %s', '', '\n\t\t'.join(log))
     
     def get_eval_results(self):
         """Evaluate the pre-defined set of evaluation metrics."""
@@ -114,13 +123,16 @@ class Trainer(object):
             summary_writer=self.eval_summary_writer,
             summary_prefix='Metrics'
         )
+
         return eval_results
 
     def log_info(self):
         """Log the training information."""
-        logging.info("step = {}, loss = {:.3f}".format(
-            self.global_step.numpy(), self.last_train_loss))
-        logging.info("{:.3f} secs/step".format(self.last_train_time))
+        logging.info("step = {}, loss = {:.3f}, {:.3f} secs/step".format(
+            self.global_step.numpy(), 
+            self.last_train_loss, 
+            self.last_train_time))
+        # logging.info("{:.3f} secs/step".format(self.last_train_time))
         
         with self.train_summary_writer.as_default():
             tf.compat.v2.summary.scalar(
@@ -204,7 +216,7 @@ class Trainer(object):
             self.collect_env,
             self.collect_policy,
             observers=replay_observer + self.train_metrics,
-            num_steps=args.n_collect_init)
+            num_steps=args.n_collect_per_iter)
         
         return collect_driver
 

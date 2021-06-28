@@ -1,5 +1,35 @@
-2021-06-25 11:17:09.377641: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000
-2021-06-25 11:17:09.377702: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2021-06-28 11:32:04.211960: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/viscam/u/leozdong/anaconda3/envs/rl/lib:/sailhome/leozdong/.mujoco/mujoco200/bin:/usr/lib/nvidia-000
+2021-06-28 11:32:04.211984: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+===== Arguments BEGIN =====
+name                 default
+env_name             HalfCheetah-v2
+use_tf_functions     True
+resume               False
+n_iter               3000000
+n_steps_per_iter     1
+batch_size           256
+n_collect_init       10000
+lr_critic            0.0003
+lr_actor             0.0003
+lr_alpha             0.0003
+tgt_tau              0.005
+tgt_update_period    1
+gamma                0.99
+r_scale              1
+n_collect_per_iter   1
+rb_len               1000000
+n_eval_eps           20
+eval_interval        10000
+purge                True
+train_ckpt_interval  50000
+policy_ckpt_interval 50000
+rb_ckpt_interval     50000
+log_interval         1000
+summary_interval     1000
+summaries_flush_secs 10
+train_dir            /iris/u/leozdong/sac/train/default
+eval_dir             /iris/u/leozdong/sac/eval/default
+====== Arguments END ======
 INFO:absl:===== Arguments BEGIN =====
 name                 default
 env_name             HalfCheetah-v2
@@ -20,23 +50,99 @@ n_collect_per_iter   1
 rb_len               1000000
 n_eval_eps           20
 eval_interval        10000
+purge                True
 train_ckpt_interval  50000
 policy_ckpt_interval 50000
 rb_ckpt_interval     50000
-log_interval         1
+log_interval         1000
 summary_interval     1000
 summaries_flush_secs 10
 train_dir            /iris/u/leozdong/sac/train/default
 eval_dir             /iris/u/leozdong/sac/eval/default
 ====== Arguments END ======
-2021-06-25 11:17:32.990615: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcuda.so.1
-2021-06-25 11:17:33.003139: E tensorflow/stream_executor/cuda/cuda_driver.cc:328] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
-2021-06-25 11:17:33.003186: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: iris2.stanford.edu
-2021-06-25 11:17:33.003194: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: iris2.stanford.edu
-2021-06-25 11:17:33.003302: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: 450.102.4
-2021-06-25 11:17:33.003352: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 450.102.4
-2021-06-25 11:17:33.003372: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:310] kernel version seems to match DSO: 450.102.4
-2021-06-25 11:17:33.003773: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+Initialization time: 0.090
+Purging logs and summaries...
+logs train.py
+logs print_logs.txt
+logs config.py
+logs default_HalfCheetah-v2.log.INFO
+match default_HalfCheetah-v2.log.INFO
+logs models.py
+logs train.sh
+logs LICENSE
+logs test_render.py
+logs viz
+logs .gitignore
+logs training.py
+logs .git
+logs eval
+logs __pycache__
+logs train
+logs models
+logs util.py
+logs README.md
+logs default_HalfCheetah-v2.log.iris1.stanford.edu.leozdong.log.INFO.20210628-113207.3874015
+match default_HalfCheetah-v2.log.iris1.stanford.edu.leozdong.log.INFO.20210628-113207.3874015
+sum ckpt-78.data-00000-of-00001
+sum ckpt-62.data-00000-of-00001
+sum ckpt-80.data-00000-of-00001
+sum ckpt-60.index
+sum ckpt-76.data-00000-of-00001
+sum ckpt-76.index
+sum ckpt-44.data-00000-of-00001
+sum ckpt-50.data-00000-of-00001
+sum ckpt-56.index
+sum policy
+sum ckpt-72.data-00000-of-00001
+sum ckpt-62.index
+sum ckpt-68.data-00000-of-00001
+sum ckpt-78.index
+sum ckpt-66.data-00000-of-00001
+sum ckpt-74.index
+sum ckpt-42.index
+sum ckpt-54.data-00000-of-00001
+sum ckpt-58.index
+sum replay_buffer
+sum ckpt-54.index
+sum ckpt-64.index
+sum ckpt-68.index
+sum ckpt-56.data-00000-of-00001
+sum ckpt-42.data-00000-of-00001
+sum ckpt-72.index
+sum ckpt-58.data-00000-of-00001
+sum ckpt-44.index
+sum ckpt-70.data-00000-of-00001
+sum ckpt-48.index
+sum ckpt-52.index
+sum ckpt-64.data-00000-of-00001
+sum checkpoint
+sum ckpt-66.index
+sum ckpt-46.data-00000-of-00001
+sum ckpt-70.index
+sum ckpt-48.data-00000-of-00001
+sum ckpt-52.data-00000-of-00001
+sum ckpt-46.index
+sum ckpt-60.data-00000-of-00001
+sum ckpt-50.index
+sum ckpt-74.data-00000-of-00001
+sum ckpt-80.index
+sum events.out.tfevents.1624905090.iris1.stanford.edu.3873786.1370.v2
+sum events.out.tfevents.1624905090.iris1.stanford.edu.3873786.1378.v2
+HalfCheetah-v2 train environment:
+Observation Spec:
+BoundedArraySpec(shape=(17,), dtype=dtype('float64'), name='observation', minimum=-1.7976931348623157e+308, maximum=1.7976931348623157e+308)
+Reward Spec:
+ArraySpec(shape=(), dtype=dtype('float32'), name='reward')
+Action Spec:
+BoundedArraySpec(shape=(6,), dtype=dtype('float32'), name='action', minimum=-1.0, maximum=1.0)
+2021-06-28 11:32:07.391394: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcuda.so.1
+2021-06-28 11:32:07.400608: E tensorflow/stream_executor/cuda/cuda_driver.cc:328] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2021-06-28 11:32:07.400648: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: iris1.stanford.edu
+2021-06-28 11:32:07.400657: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: iris1.stanford.edu
+2021-06-28 11:32:07.400758: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: 450.102.4
+2021-06-28 11:32:07.400793: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 450.102.4
+2021-06-28 11:32:07.400815: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:310] kernel version seems to match DSO: 450.102.4
+2021-06-28 11:32:07.401170: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py:382: ReplayBuffer.get_next (from tf_agents.replay_buffers.replay_buffer) is deprecated and will be removed in a future version.
 Instructions for updating:
@@ -44,8 +150,8 @@ Use `as_dataset(..., single_deterministic_pass=False) instead.
 WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py:382: ReplayBuffer.get_next (from tf_agents.replay_buffers.replay_buffer) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `as_dataset(..., single_deterministic_pass=False) instead.
-2021-06-25 11:17:34.418468: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
-2021-06-25 11:17:34.437439: I tensorflow/core/platform/profile_utils/cpu_utils.cc:114] CPU Frequency: 2300000000 Hz
+2021-06-28 11:32:08.389277: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+2021-06-28 11:32:08.391719: I tensorflow/core/platform/profile_utils/cpu_utils.cc:114] CPU Frequency: 2300000000 Hz
 INFO:absl:Initializing replay buffer by collecting experience for 10000 steps with a random policy.
 WARNING:tensorflow:From /viscam/u/leozdong/anaconda3/envs/rl/lib/python3.6/site-packages/tf_agents/drivers/dynamic_step_driver.py:206: calling while_loop_v2 (from tensorflow.python.ops.control_flow_ops) with back_prop=False is deprecated and will be removed in a future version.
 Instructions for updating:
@@ -61,7 +167,7 @@ Instead of:
 results = tf.while_loop(c, b, vars, back_prop=False)
 Use:
 results = tf.nest.map_structure(tf.stop_gradient, tf.while_loop(c, b, vars))
-INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default
+INFO:absl:Checkpoint available: /iris/u/leozdong/sac/train/default/ckpt-80
 INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default/policy
 INFO:absl:No checkpoint available at /iris/u/leozdong/sac/train/default/replay_buffer
 WARNING:tensorflow:From /sailhome/leozdong/.local/lib/python3.6/site-packages/tensorflow_probability/python/distributions/distribution.py:298: calling MultivariateNormalDiag.__init__ (from tensorflow_probability.python.distributions.mvn_diag) with scale_identity_multiplier is deprecated and will be removed after 2020-01-01.
@@ -70,7 +176,343 @@ Instructions for updating:
 WARNING:tensorflow:From /sailhome/leozdong/.local/lib/python3.6/site-packages/tensorflow_probability/python/distributions/distribution.py:298: calling MultivariateNormalDiag.__init__ (from tensorflow_probability.python.distributions.mvn_diag) with scale_identity_multiplier is deprecated and will be removed after 2020-01-01.
 Instructions for updating:
 `scale_identity_multiplier` is deprecated; please combine it with `scale_diag` directly instead.
-INFO:absl:step = 2, loss = 145.487
-INFO:absl:229.816 secs/step
-INFO:absl:step = 4, loss = 45.806
-INFO:absl:225.756 secs/step
+INFO:absl:AverageReturn = -0.14936968684196472
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 1000, loss = -18.431, 0.063 secs/step
+INFO:absl:step = 2000, loss = -27.721, 0.059 secs/step
+INFO:absl:step = 3000, loss = -34.654, 0.060 secs/step
+INFO:absl:step = 4000, loss = -38.523, 0.064 secs/step
+INFO:absl:step = 5000, loss = -40.781, 0.063 secs/step
+INFO:absl:step = 6000, loss = -41.738, 0.064 secs/step
+INFO:absl:step = 7000, loss = -42.505, 0.061 secs/step
+INFO:absl:step = 8000, loss = -40.933, 0.063 secs/step
+INFO:absl:step = 9000, loss = -40.709, 0.058 secs/step
+INFO:absl:step = 10000, loss = -38.094, 0.058 secs/step
+INFO:absl:AverageReturn = 317.3343200683594
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 11000, loss = -36.020, 0.063 secs/step
+INFO:absl:step = 12000, loss = -34.257, 0.063 secs/step
+INFO:absl:step = 13000, loss = -32.092, 0.059 secs/step
+INFO:absl:step = 14000, loss = -29.282, 0.064 secs/step
+INFO:absl:step = 15000, loss = -31.926, 0.060 secs/step
+INFO:absl:step = 16000, loss = -32.362, 0.060 secs/step
+INFO:absl:step = 17000, loss = -33.803, 0.063 secs/step
+INFO:absl:step = 18000, loss = -32.034, 0.065 secs/step
+INFO:absl:step = 19000, loss = -34.624, 0.059 secs/step
+INFO:absl:step = 20000, loss = -36.347, 0.063 secs/step
+INFO:absl:AverageReturn = 1527.844970703125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 21000, loss = -34.660, 0.059 secs/step
+INFO:absl:step = 22000, loss = -36.149, 0.062 secs/step
+INFO:absl:step = 23000, loss = -37.292, 0.063 secs/step
+INFO:absl:step = 24000, loss = -40.566, 0.061 secs/step
+INFO:absl:step = 25000, loss = -39.125, 0.066 secs/step
+INFO:absl:step = 26000, loss = -44.469, 0.063 secs/step
+INFO:absl:step = 27000, loss = -48.097, 0.059 secs/step
+INFO:absl:step = 28000, loss = -49.683, 0.064 secs/step
+INFO:absl:step = 29000, loss = -51.345, 0.060 secs/step
+INFO:absl:step = 30000, loss = -54.657, 0.064 secs/step
+INFO:absl:AverageReturn = 2445.9765625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 31000, loss = -56.112, 0.060 secs/step
+INFO:absl:step = 32000, loss = -58.771, 0.065 secs/step
+INFO:absl:step = 33000, loss = -62.386, 0.060 secs/step
+INFO:absl:step = 34000, loss = -60.561, 0.058 secs/step
+INFO:absl:step = 35000, loss = -65.417, 0.066 secs/step
+INFO:absl:step = 36000, loss = -69.542, 0.059 secs/step
+INFO:absl:step = 37000, loss = -67.931, 0.059 secs/step
+INFO:absl:step = 38000, loss = -74.536, 0.064 secs/step
+INFO:absl:step = 39000, loss = -78.485, 0.059 secs/step
+INFO:absl:step = 40000, loss = -76.329, 0.065 secs/step
+WARNING:tensorflow:5 out of the last 5 calls to <bound method DynamicEpisodeDriver.run of <tf_agents.drivers.dynamic_episode_driver.DynamicEpisodeDriver object at 0x7f9547175e48>> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:5 out of the last 5 calls to <bound method DynamicEpisodeDriver.run of <tf_agents.drivers.dynamic_episode_driver.DynamicEpisodeDriver object at 0x7f9547175e48>> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO:absl:AverageReturn = 2972.442626953125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 41000, loss = -81.516, 0.058 secs/step
+INFO:absl:step = 42000, loss = -80.422, 0.059 secs/step
+INFO:absl:step = 43000, loss = -84.985, 0.064 secs/step
+INFO:absl:step = 44000, loss = -87.617, 0.060 secs/step
+INFO:absl:step = 45000, loss = -90.048, 0.068 secs/step
+INFO:absl:step = 46000, loss = -99.171, 0.064 secs/step
+INFO:absl:step = 47000, loss = -94.468, 0.061 secs/step
+INFO:absl:step = 48000, loss = -98.757, 0.064 secs/step
+INFO:absl:step = 49000, loss = -99.623, 0.063 secs/step
+INFO:absl:step = 50000, loss = -104.455, 0.064 secs/step
+WARNING:tensorflow:6 out of the last 6 calls to <bound method DynamicEpisodeDriver.run of <tf_agents.drivers.dynamic_episode_driver.DynamicEpisodeDriver object at 0x7f9530594c18>> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <bound method DynamicEpisodeDriver.run of <tf_agents.drivers.dynamic_episode_driver.DynamicEpisodeDriver object at 0x7f9530594c18>> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO:absl:AverageReturn = 3454.782470703125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/ckpt-50000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/policy/ckpt-50000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/replay_buffer/ckpt-50000
+INFO:absl:step = 51000, loss = -108.405, 0.064 secs/step
+INFO:absl:step = 52000, loss = -109.721, 0.065 secs/step
+INFO:absl:step = 53000, loss = -109.691, 0.063 secs/step
+INFO:absl:step = 54000, loss = -118.638, 0.063 secs/step
+INFO:absl:step = 55000, loss = -116.460, 0.066 secs/step
+INFO:absl:step = 56000, loss = -118.377, 0.060 secs/step
+INFO:absl:step = 57000, loss = -118.338, 0.064 secs/step
+INFO:absl:step = 58000, loss = -125.059, 0.058 secs/step
+INFO:absl:step = 59000, loss = -131.307, 0.060 secs/step
+INFO:absl:step = 60000, loss = -129.647, 0.063 secs/step
+INFO:absl:AverageReturn = 3764.553955078125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 61000, loss = -133.106, 0.063 secs/step
+INFO:absl:step = 62000, loss = -137.217, 0.065 secs/step
+INFO:absl:step = 63000, loss = -142.636, 0.062 secs/step
+INFO:absl:step = 64000, loss = -142.062, 0.064 secs/step
+INFO:absl:step = 65000, loss = -139.580, 0.065 secs/step
+INFO:absl:step = 66000, loss = -142.771, 0.062 secs/step
+INFO:absl:step = 67000, loss = -147.667, 0.065 secs/step
+INFO:absl:step = 68000, loss = -145.411, 0.063 secs/step
+INFO:absl:step = 69000, loss = -154.857, 0.062 secs/step
+INFO:absl:step = 70000, loss = -154.466, 0.059 secs/step
+INFO:absl:AverageReturn = 3907.869873046875
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 71000, loss = -162.244, 0.068 secs/step
+INFO:absl:step = 72000, loss = -157.813, 0.059 secs/step
+INFO:absl:step = 73000, loss = -166.796, 0.063 secs/step
+INFO:absl:step = 74000, loss = -163.302, 0.059 secs/step
+INFO:absl:step = 75000, loss = -166.424, 0.059 secs/step
+INFO:absl:step = 76000, loss = -172.516, 0.059 secs/step
+INFO:absl:step = 77000, loss = -169.109, 0.060 secs/step
+INFO:absl:step = 78000, loss = -169.918, 0.063 secs/step
+INFO:absl:step = 79000, loss = -176.549, 0.058 secs/step
+INFO:absl:step = 80000, loss = -179.321, 0.063 secs/step
+INFO:absl:AverageReturn = 4142.24462890625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 81000, loss = -177.736, 0.059 secs/step
+INFO:absl:step = 82000, loss = -184.502, 0.065 secs/step
+INFO:absl:step = 83000, loss = -182.583, 0.060 secs/step
+INFO:absl:step = 84000, loss = -185.174, 0.067 secs/step
+INFO:absl:step = 85000, loss = -188.810, 0.068 secs/step
+INFO:absl:step = 86000, loss = -181.959, 0.065 secs/step
+INFO:absl:step = 87000, loss = -188.855, 0.064 secs/step
+INFO:absl:step = 88000, loss = -188.712, 0.064 secs/step
+INFO:absl:step = 89000, loss = -189.439, 0.059 secs/step
+INFO:absl:step = 90000, loss = -194.371, 0.065 secs/step
+INFO:absl:AverageReturn = 4142.9208984375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 91000, loss = -199.119, 0.063 secs/step
+INFO:absl:step = 92000, loss = -194.560, 0.063 secs/step
+INFO:absl:step = 93000, loss = -203.592, 0.064 secs/step
+INFO:absl:step = 94000, loss = -196.801, 0.065 secs/step
+INFO:absl:step = 95000, loss = -204.258, 0.064 secs/step
+INFO:absl:step = 96000, loss = -204.128, 0.059 secs/step
+INFO:absl:step = 97000, loss = -198.816, 0.063 secs/step
+INFO:absl:step = 98000, loss = -201.633, 0.059 secs/step
+INFO:absl:step = 99000, loss = -213.031, 0.060 secs/step
+INFO:absl:step = 100000, loss = -205.825, 0.064 secs/step
+INFO:absl:AverageReturn = 4652.25
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/ckpt-100000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/policy/ckpt-100000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/replay_buffer/ckpt-100000
+INFO:absl:step = 101000, loss = -214.873, 0.063 secs/step
+INFO:absl:step = 102000, loss = -211.670, 0.065 secs/step
+INFO:absl:step = 103000, loss = -211.118, 0.065 secs/step
+INFO:absl:step = 104000, loss = -218.510, 0.057 secs/step
+INFO:absl:step = 105000, loss = -211.140, 0.064 secs/step
+INFO:absl:step = 106000, loss = -215.703, 0.063 secs/step
+INFO:absl:step = 107000, loss = -221.706, 0.060 secs/step
+INFO:absl:step = 108000, loss = -219.694, 0.060 secs/step
+INFO:absl:step = 109000, loss = -223.870, 0.060 secs/step
+INFO:absl:step = 110000, loss = -215.672, 0.059 secs/step
+INFO:absl:AverageReturn = 4694.9150390625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 111000, loss = -226.803, 0.067 secs/step
+INFO:absl:step = 112000, loss = -223.413, 0.070 secs/step
+INFO:absl:step = 113000, loss = -222.941, 0.060 secs/step
+INFO:absl:step = 114000, loss = -220.569, 0.068 secs/step
+INFO:absl:step = 115000, loss = -222.743, 0.064 secs/step
+INFO:absl:step = 116000, loss = -228.249, 0.064 secs/step
+INFO:absl:step = 117000, loss = -226.419, 0.061 secs/step
+INFO:absl:step = 118000, loss = -224.548, 0.065 secs/step
+INFO:absl:step = 119000, loss = -227.618, 0.059 secs/step
+INFO:absl:step = 120000, loss = -225.217, 0.059 secs/step
+INFO:absl:AverageReturn = 4727.8603515625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 121000, loss = -230.426, 0.063 secs/step
+INFO:absl:step = 122000, loss = -228.997, 0.060 secs/step
+INFO:absl:step = 123000, loss = -232.498, 0.069 secs/step
+INFO:absl:step = 124000, loss = -235.731, 0.059 secs/step
+INFO:absl:step = 125000, loss = -233.144, 0.065 secs/step
+INFO:absl:step = 126000, loss = -240.639, 0.059 secs/step
+INFO:absl:step = 127000, loss = -236.804, 0.064 secs/step
+INFO:absl:step = 128000, loss = -239.320, 0.059 secs/step
+INFO:absl:step = 129000, loss = -236.896, 0.065 secs/step
+INFO:absl:step = 130000, loss = -241.532, 0.060 secs/step
+INFO:absl:AverageReturn = 5085.79052734375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 131000, loss = -239.653, 0.059 secs/step
+INFO:absl:step = 132000, loss = -231.232, 0.059 secs/step
+INFO:absl:step = 133000, loss = -247.070, 0.062 secs/step
+INFO:absl:step = 134000, loss = -234.935, 0.063 secs/step
+INFO:absl:step = 135000, loss = -241.250, 0.064 secs/step
+INFO:absl:step = 136000, loss = -246.272, 0.065 secs/step
+INFO:absl:step = 137000, loss = -241.122, 0.083 secs/step
+INFO:absl:step = 138000, loss = -248.889, 0.064 secs/step
+INFO:absl:step = 139000, loss = -245.808, 0.063 secs/step
+INFO:absl:step = 140000, loss = -252.404, 0.063 secs/step
+INFO:absl:AverageReturn = 5113.7646484375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 141000, loss = -252.441, 0.061 secs/step
+INFO:absl:step = 142000, loss = -256.596, 0.060 secs/step
+INFO:absl:step = 143000, loss = -257.298, 0.064 secs/step
+INFO:absl:step = 144000, loss = -256.066, 0.063 secs/step
+INFO:absl:step = 145000, loss = -270.360, 0.065 secs/step
+INFO:absl:step = 146000, loss = -260.136, 0.060 secs/step
+INFO:absl:step = 147000, loss = -261.073, 0.060 secs/step
+INFO:absl:step = 148000, loss = -257.710, 0.060 secs/step
+INFO:absl:step = 149000, loss = -256.269, 0.061 secs/step
+INFO:absl:step = 150000, loss = -257.534, 0.060 secs/step
+INFO:absl:AverageReturn = 5213.54248046875
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/ckpt-150000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/policy/ckpt-150000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/replay_buffer/ckpt-150000
+INFO:absl:step = 151000, loss = -259.636, 0.059 secs/step
+INFO:absl:step = 152000, loss = -261.453, 0.060 secs/step
+INFO:absl:step = 153000, loss = -266.021, 0.064 secs/step
+INFO:absl:step = 154000, loss = -270.532, 0.060 secs/step
+INFO:absl:step = 155000, loss = -259.799, 0.064 secs/step
+INFO:absl:step = 156000, loss = -271.189, 0.067 secs/step
+INFO:absl:step = 157000, loss = -265.406, 0.064 secs/step
+INFO:absl:step = 158000, loss = -276.645, 0.060 secs/step
+INFO:absl:step = 159000, loss = -279.496, 0.097 secs/step
+INFO:absl:step = 160000, loss = -273.879, 0.060 secs/step
+INFO:absl:AverageReturn = 5059.08203125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 161000, loss = -275.790, 0.066 secs/step
+INFO:absl:step = 162000, loss = -276.287, 0.064 secs/step
+INFO:absl:step = 163000, loss = -275.362, 0.063 secs/step
+INFO:absl:step = 164000, loss = -274.965, 0.065 secs/step
+INFO:absl:step = 165000, loss = -274.328, 0.063 secs/step
+INFO:absl:step = 166000, loss = -278.978, 0.065 secs/step
+INFO:absl:step = 167000, loss = -283.510, 0.064 secs/step
+INFO:absl:step = 168000, loss = -289.616, 0.065 secs/step
+INFO:absl:step = 169000, loss = -287.461, 0.064 secs/step
+INFO:absl:step = 170000, loss = -289.285, 0.060 secs/step
+INFO:absl:AverageReturn = 5509.0380859375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 171000, loss = -281.889, 0.059 secs/step
+INFO:absl:step = 172000, loss = -287.746, 0.064 secs/step
+INFO:absl:step = 173000, loss = -292.336, 0.063 secs/step
+INFO:absl:step = 174000, loss = -286.010, 0.063 secs/step
+INFO:absl:step = 175000, loss = -294.334, 0.066 secs/step
+INFO:absl:step = 176000, loss = -292.432, 0.059 secs/step
+INFO:absl:step = 177000, loss = -292.918, 0.064 secs/step
+INFO:absl:step = 178000, loss = -291.411, 0.066 secs/step
+INFO:absl:step = 179000, loss = -285.635, 0.064 secs/step
+INFO:absl:step = 180000, loss = -297.747, 0.064 secs/step
+INFO:absl:AverageReturn = 5303.46630859375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 181000, loss = -297.268, 0.063 secs/step
+INFO:absl:step = 182000, loss = -295.776, 0.066 secs/step
+INFO:absl:step = 183000, loss = -290.067, 0.057 secs/step
+INFO:absl:step = 184000, loss = -289.565, 0.056 secs/step
+INFO:absl:step = 185000, loss = -301.317, 0.058 secs/step
+INFO:absl:step = 186000, loss = -298.352, 0.057 secs/step
+INFO:absl:step = 187000, loss = -300.267, 0.059 secs/step
+INFO:absl:step = 188000, loss = -293.859, 0.057 secs/step
+INFO:absl:step = 189000, loss = -300.661, 0.060 secs/step
+INFO:absl:step = 190000, loss = -290.396, 0.056 secs/step
+INFO:absl:AverageReturn = 5589.05712890625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 191000, loss = -300.431, 0.057 secs/step
+INFO:absl:step = 192000, loss = -296.330, 0.057 secs/step
+INFO:absl:step = 193000, loss = -294.019, 0.055 secs/step
+INFO:absl:step = 194000, loss = -304.144, 0.055 secs/step
+INFO:absl:step = 195000, loss = -301.466, 0.056 secs/step
+INFO:absl:step = 196000, loss = -310.260, 0.060 secs/step
+INFO:absl:step = 197000, loss = -307.713, 0.056 secs/step
+INFO:absl:step = 198000, loss = -303.317, 0.062 secs/step
+INFO:absl:step = 199000, loss = -304.991, 0.056 secs/step
+INFO:absl:step = 200000, loss = -310.962, 0.058 secs/step
+INFO:absl:AverageReturn = 5555.2431640625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/ckpt-200000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/policy/ckpt-200000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/replay_buffer/ckpt-200000
+INFO:absl:step = 201000, loss = -307.326, 0.057 secs/step
+INFO:absl:step = 202000, loss = -311.554, 0.055 secs/step
+INFO:absl:step = 203000, loss = -315.742, 0.056 secs/step
+INFO:absl:step = 204000, loss = -306.749, 0.058 secs/step
+INFO:absl:step = 205000, loss = -317.916, 0.055 secs/step
+INFO:absl:step = 206000, loss = -318.099, 0.056 secs/step
+INFO:absl:step = 207000, loss = -316.957, 0.061 secs/step
+INFO:absl:step = 208000, loss = -323.030, 0.056 secs/step
+INFO:absl:step = 209000, loss = -314.133, 0.054 secs/step
+INFO:absl:step = 210000, loss = -309.996, 0.056 secs/step
+INFO:absl:AverageReturn = 5575.88671875
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 211000, loss = -323.237, 0.055 secs/step
+INFO:absl:step = 212000, loss = -327.253, 0.055 secs/step
+INFO:absl:step = 213000, loss = -316.671, 0.056 secs/step
+INFO:absl:step = 214000, loss = -324.111, 0.057 secs/step
+INFO:absl:step = 215000, loss = -326.699, 0.056 secs/step
+INFO:absl:step = 216000, loss = -314.959, 0.055 secs/step
+INFO:absl:step = 217000, loss = -319.764, 0.058 secs/step
+INFO:absl:step = 218000, loss = -318.906, 0.056 secs/step
+INFO:absl:step = 219000, loss = -313.781, 0.055 secs/step
+INFO:absl:step = 220000, loss = -320.320, 0.055 secs/step
+INFO:absl:AverageReturn = 5923.1708984375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 221000, loss = -313.332, 0.055 secs/step
+INFO:absl:step = 222000, loss = -325.670, 0.055 secs/step
+INFO:absl:step = 223000, loss = -332.070, 0.057 secs/step
+INFO:absl:step = 224000, loss = -327.804, 0.055 secs/step
+INFO:absl:step = 225000, loss = -329.066, 0.055 secs/step
+INFO:absl:step = 226000, loss = -324.384, 0.055 secs/step
+INFO:absl:step = 227000, loss = -331.732, 0.055 secs/step
+INFO:absl:step = 228000, loss = -333.026, 0.057 secs/step
+INFO:absl:step = 229000, loss = -333.377, 0.058 secs/step
+INFO:absl:step = 230000, loss = -338.995, 0.056 secs/step
+INFO:absl:AverageReturn = 6053.53662109375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 231000, loss = -335.496, 0.056 secs/step
+INFO:absl:step = 232000, loss = -335.097, 0.055 secs/step
+INFO:absl:step = 233000, loss = -328.954, 0.055 secs/step
+INFO:absl:step = 234000, loss = -330.358, 0.056 secs/step
+INFO:absl:step = 235000, loss = -327.712, 0.058 secs/step
+INFO:absl:step = 236000, loss = -331.382, 0.055 secs/step
+INFO:absl:step = 237000, loss = -330.729, 0.062 secs/step
+INFO:absl:step = 238000, loss = -332.027, 0.057 secs/step
+INFO:absl:step = 239000, loss = -328.163, 0.056 secs/step
+INFO:absl:step = 240000, loss = -327.287, 0.055 secs/step
+INFO:absl:AverageReturn = 6201.37744140625
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 241000, loss = -341.125, 0.056 secs/step
+INFO:absl:step = 242000, loss = -334.182, 0.055 secs/step
+INFO:absl:step = 243000, loss = -340.862, 0.060 secs/step
+INFO:absl:step = 244000, loss = -341.631, 0.055 secs/step
+INFO:absl:step = 245000, loss = -328.194, 0.055 secs/step
+INFO:absl:step = 246000, loss = -338.597, 0.057 secs/step
+INFO:absl:step = 247000, loss = -341.119, 0.055 secs/step
+INFO:absl:step = 248000, loss = -341.317, 0.055 secs/step
+INFO:absl:step = 249000, loss = -341.627, 0.058 secs/step
+INFO:absl:step = 250000, loss = -332.154, 0.055 secs/step
+INFO:absl:AverageReturn = 6358.673828125
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/ckpt-250000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/policy/ckpt-250000
+INFO:absl:Saved checkpoint: /iris/u/leozdong/sac/train/default/replay_buffer/ckpt-250000
+INFO:absl:step = 251000, loss = -335.178, 0.057 secs/step
+INFO:absl:step = 252000, loss = -340.260, 0.063 secs/step
+INFO:absl:step = 253000, loss = -344.087, 0.055 secs/step
+INFO:absl:step = 254000, loss = -338.823, 0.054 secs/step
+INFO:absl:step = 255000, loss = -338.903, 0.056 secs/step
+INFO:absl:step = 256000, loss = -338.279, 0.057 secs/step
+INFO:absl:step = 257000, loss = -333.890, 0.059 secs/step
+INFO:absl:step = 258000, loss = -341.324, 0.058 secs/step
+INFO:absl:step = 259000, loss = -350.549, 0.056 secs/step
+INFO:absl:step = 260000, loss = -354.702, 0.055 secs/step
+INFO:absl:AverageReturn = 6337.62255859375
+INFO:absl:AverageEpisodeLength = 1000.0
+INFO:absl:step = 261000, loss = -344.013, 0.058 secs/step
+INFO:absl:step = 262000, loss = -353.332, 0.055 secs/step
+INFO:absl:step = 263000, loss = -351.978, 0.056 secs/step
+INFO:absl:step = 264000, loss = -349.411, 0.057 secs/step
+INFO:absl:step = 265000, loss = -354.726, 0.055 secs/step
+INFO:absl:step = 266000, loss = -348.973, 0.056 secs/step
+INFO:absl:step = 267000, loss = -348.135, 0.056 secs/step

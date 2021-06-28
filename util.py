@@ -4,6 +4,7 @@ import base64
 import IPython
 import imageio
 import os
+import re
 import argparse
 
 def str2bool(v):
@@ -42,3 +43,26 @@ def create_policy_eval_video(policy, env, py_env, filename, save_dir,
                 time_step = env.step(action_step.action)
                 video.append_data(py_env.render())
     return embed_mp4(filename)
+
+def purge_logs(root='./'):
+    dir = root
+    pattern = '^.*INFO.*$'
+    for f in os.listdir(dir):
+        print('logs', f)
+        if re.search(pattern, f):
+            print('match', f)
+            os.remove(os.path.join(dir, f))
+
+def purge_summaries(root='./'):
+    dirs = [os.path.join(root, 'train'), os.path.join(root, 'eval')]
+    pattern = 'events*'
+    for dir in dirs:
+        for sub_dir in os.listdir(dir):
+            for f in os.listdir(os.path.join(dir, sub_dir)):
+                print('sum', f)
+                if re.search(pattern, f):
+                    os.remove(os.path.join(dir, sub_dir, f))
+
+def purge(root='./'):
+    purge_logs(root)
+    purge_summaries(root)

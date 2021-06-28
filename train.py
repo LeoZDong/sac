@@ -23,6 +23,10 @@ import models
 from training import Trainer
 
 def train(args):
+    if args.purge:
+        print("Purging logs and summaries...")
+        util.purge()
+
     try:
         collect_py_env = suite_mujoco.load(args.env_name)
         eval_py_env = suite_mujoco.load(args.env_name)
@@ -59,6 +63,7 @@ def train(args):
     # TODO: Evaluate the agent's policy before training
     # avg_return = trainer.get_eval_metrics()['AverageReturn']
     # returns = [avg_return]
+    trainer.eval_iter()
 
     # timed_at_step = global_step.numpy()
     for i in range(args.n_iter):

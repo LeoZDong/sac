@@ -62,6 +62,8 @@ def get_parser():
                         help="Evaluate every n iters.")
     
     # Data loading and model saving
+    parser.add_argument('--purge', action='store_true', 
+            help="Whether to purge existing logs and summaries in directory.")
     parser.add_argument('--train_ckpt_interval', type=int, default=50000, 
                         help="Save training checkpoints every n iters.")
     parser.add_argument('--policy_ckpt_interval', type=int, default=50000,
