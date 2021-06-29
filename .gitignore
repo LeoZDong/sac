@@ -130,10 +130,12 @@ dmypy.json
 
 # My addition: log files
 *checkpoint*
-.txt
+*.txt
+*.log
 events*
 train/
 eval/
 viz/
 models/
-.INFO
+models/default/
+logs/
