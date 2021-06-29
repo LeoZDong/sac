@@ -140,3 +140,5 @@ models/
 models/default/
 logs/
 logger_test.py
+__pycache__/
+test_render.py
