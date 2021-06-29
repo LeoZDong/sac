@@ -68,6 +68,8 @@ def get_parser():
                         help="Save training checkpoints every n iters.")
     parser.add_argument('--policy_ckpt_interval', type=int, default=50000,
                         help="Save policy checkpoints every n iters.")
+    parser.add_argument('--policy_vid_interval', type=int, default=50000,
+                        help="Save policy videos every n iters.")
     parser.add_argument('--rb_ckpt_interval', type=int, default=50000,
                         help="Save replay buffer checkpoints every n iters.")
     parser.add_argument('--log_interval', type=int, default=1000, 
@@ -81,6 +83,8 @@ def get_parser():
                         help="Directory to save training models and viz.")
     parser.add_argument('--eval_dir', type=str, default='eval', 
                         help="Directory to save evaluation models and viz.")
+    parser.add_argument('--log_dir', type=str, default='logs', 
+                        help="Directory to save logs.")
 
     return parser
 
@@ -104,10 +108,11 @@ def parse(root=os.path.dirname(os.path.abspath(__file__)), config_file=None,
         os.makedirs(args.train_dir)
     if not os.path.isdir(args.eval_dir):
         os.makedirs(args.eval_dir)
+    if not os.path.isdir(args.log_dir):
+        os.makedirs(args.log_dir)
     
     if save_config:
-        save_file = os.path.join(args.viz_dir, 
-                                 'config_{}.yaml'.format(args.model_name))
+        save_file = 'config_{}.yaml'.format(args.model_name)
         with io.open(save_file, 'w') as outfile:
             yaml.dump(args, outfile)
 

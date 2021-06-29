@@ -2,7 +2,7 @@
 
 import os
 import time
-from absl import logging
+import logging
 
 import tensorflow as tf
 from tf_agents.agents.ddpg import critic_network
@@ -54,12 +54,17 @@ class Trainer(object):
         # Get data collection driver
         self.collect_driver = self.build_collect_driver(args)
 
-        # Initial data collection
-        self.start_init_collect(args)
-        
         #### Evaluation and checkpoints ####
         self.n_eval_eps = args.n_eval_eps
         self.checkpointer = self.build_checkpointers(args)
+
+        # Load checkpoint
+        if args.resume:
+            self.checkpointer['train'].initialize_or_restore()
+            self.checkpointer['rb'].initialize_or_restore()
+
+        # Initial data collection (needs to happen after loading checkpoints)
+        self.start_init_collect(args)
 
         ### Logging, visualization, and model saving ####
         self.train_summary_writer = tf.compat.v2.summary.create_file_writer(
@@ -128,7 +133,7 @@ class Trainer(object):
 
     def log_info(self):
         """Log the training information."""
-        logging.info("step = {}, loss = {:.3f}, {:.3f} secs/step".format(
+        logging.info("step = {}, loss = {:.3f}, time = {:.3f} secs/step".format(
             self.global_step.numpy(), 
             self.last_train_loss, 
             self.last_train_time))
@@ -224,8 +229,7 @@ class Trainer(object):
         """Start the initial collection process."""
         if self.replay_buffer.num_frames() > 0:
             logging.info(
-                ("Replay buffer already stores data." 
-                 "Skip initial collection").format(args.n_collect_init))
+                "Replay buffer already stores data. Skip initial collection")
             return
 
         initial_collect_policy = random_tf_policy.RandomTFPolicy(

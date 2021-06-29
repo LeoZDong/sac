@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image
 import pyvirtualdisplay
-from absl import logging
+import logging
 
+import pyglet
 import tensorflow as tf
 
 from tf_agents.environments import suite_mujoco, suite_gym
@@ -37,8 +38,10 @@ def train(args):
     collect_py_env.reset()
     collect_env = tf_py_environment.TFPyEnvironment(collect_py_env)
     eval_env = tf_py_environment.TFPyEnvironment(eval_py_env)
-    # PIL.Image.fromarray(train_py_env.render())
-    # train_py_env.render()
+    import ipdb; ipdb.set_trace()
+    print("Test rendering...")
+    # GlfwContext(offscreen=True)
+    PIL.Image.fromarray(eval_py_env.render())
 
     # Print information about the environment
     print('{} train environment:'.format(args.env_name))
@@ -55,19 +58,20 @@ def train(args):
     agent = models.get_agent(collect_env, global_step, args)
     trainer = Trainer(agent, collect_env, eval_env, args)
 
-    # Load checkpoint
-    if args.resume:
-        trainer.checkpointer['train'].initialize_or_restore()
-        trainer.checkpointer['rb'].initialize_or_restore()
-
-    # TODO: Evaluate the agent's policy before training
-    # avg_return = trainer.get_eval_metrics()['AverageReturn']
-    # returns = [avg_return]
+    # Initial evaluation
+    start_step = global_step.numpy()
     trainer.eval_iter()
 
-    # timed_at_step = global_step.numpy()
-    for i in range(args.n_iter):
-        train_loss = trainer.train_iter()
+    import ipdb; ipdb.set_trace()
+    if args.policy_vid_interval:
+        util.create_policy_eval_video(
+            trainer.eval_policy, eval_env, eval_py_env,
+            os.path.join(args.eval_dir, 'videos'),
+            'trained-agent-step{:06d}'.format(global_step.numpy())
+        )
+
+    for i in range(start_step, args.n_iter):
+        trainer.train_iter()
         step = global_step.numpy()
         write_summary = lambda: tf.math.equal(
             global_step % args.summary_interval, 0)
@@ -88,27 +92,38 @@ def train(args):
         
         if args.rb_ckpt_interval and step % args.rb_ckpt_interval == 0:
             trainer.checkpointer['rb'].save(global_step=step)
-    
-    util.create_policy_eval_video(trainer.agent.eval_policy, eval_env, 
-                                  eval_py_env, args.viz_dir, 'trained-agent')
+
+        if args.policy_vid_interval and step % args.policy_vid_interval == 0:
+            util.create_policy_eval_video(
+                trainer.eval_policy, eval_env, eval_py_env, 
+                os.path.join(args.eval_dir, 'videos'),
+                'trained-agent-step{:06d}'.format(step)
+            )
+
+    if args.policy_vid_interval:
+        util.create_policy_eval_video(
+            trainer.eval_policy, eval_env, eval_py_env,
+            os.path.join(args.eval_dir, 'videos'),
+            'trained-agent-step{:06d}-final'.format(step)
+        )
 
 def main():
-    start_time = time.time()
-
     tf.compat.v1.enable_v2_behavior()
     # Set up a virtual display for rendering OpenAI gym environments.
     display = pyvirtualdisplay.Display(visible=False, size=(1400, 900)).start()
 
-    if os.getcwd().startswith('/sailhome'):
-        root = '/iris/u/leozdong/rl_playground'
-    else:
-        root = os.getcwd()
+    root = os.getcwd()
     arguments = config.parse(root=root)
 
     # Configure logger
-    logging.get_absl_handler().use_absl_log_file(
-        '{}_{}.log'.format(arguments.name, arguments.env_name), './')
-    logging.set_verbosity(logging.INFO)
+    log_file = os.path.join(arguments.log_dir, '{}_{}.log'.format(
+        arguments.name, arguments.env_name))
+    
+    logging.basicConfig(filename=log_file, level=logging.INFO,
+                        format='%(asctime)s %(message)s',
+                        datefmt='%m-%d %H:%M:%S', filemode='w')
+
+    logging.getLogger().addHandler(logging.StreamHandler())
 
     args_info = ['===== Arguments BEGIN =====']
     for key, val in vars(arguments).items():
@@ -118,8 +133,6 @@ def main():
 
     print(args_info)
     logging.info(args_info)
-
-    print("Initialization time: {:.3f}".format(time.time() - start_time))
 
     train(arguments)
 

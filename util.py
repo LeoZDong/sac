@@ -31,7 +31,10 @@ def embed_mp4(filename):
 
 
 def create_policy_eval_video(policy, env, py_env, filename, save_dir, 
-                             num_episodes=5, fps=30):
+                             num_episodes=1, fps=30):
+    if not os.path.isdir(save_dir):
+        os.makedirs(save_dir)
+
     filename = filename + ".mp4"
     filepath = os.path.join(save_dir, filename)
     with imageio.get_writer(filepath, fps=fps) as video:
