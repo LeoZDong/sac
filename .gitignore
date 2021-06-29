@@ -139,3 +139,4 @@ viz/
 models/
 models/default/
 logs/
+logger_test.py
