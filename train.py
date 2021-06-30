@@ -24,10 +24,6 @@ import models
 from training import Trainer
 
 def train(args):
-    if args.purge:
-        print("Purging logs and summaries...")
-        util.purge()
-
     try:
         collect_py_env = suite_mujoco.load(args.env_name)
         eval_py_env = suite_mujoco.load(args.env_name)
@@ -38,9 +34,8 @@ def train(args):
     collect_py_env.reset()
     collect_env = tf_py_environment.TFPyEnvironment(collect_py_env)
     eval_env = tf_py_environment.TFPyEnvironment(eval_py_env)
-    import ipdb; ipdb.set_trace()
+
     print("Test rendering...")
-    # GlfwContext(offscreen=True)
     PIL.Image.fromarray(eval_py_env.render())
 
     # Print information about the environment
@@ -62,13 +57,15 @@ def train(args):
     start_step = global_step.numpy()
     trainer.eval_iter()
 
-    import ipdb; ipdb.set_trace()
     if args.policy_vid_interval:
+        start_time = time.time()
+        logging.info("Saving policy video...")
         util.create_policy_eval_video(
             trainer.eval_policy, eval_env, eval_py_env,
-            os.path.join(args.eval_dir, 'videos'),
-            'trained-agent-step{:06d}'.format(global_step.numpy())
+            'trained-agent-step{:06d}'.format(global_step.numpy()),
+            os.path.join(args.eval_dir, 'videos'), fps=60
         )
+        logging.info("Save video time: {}".format(time.time() - start_time))
 
     for i in range(start_step, args.n_iter):
         trainer.train_iter()
@@ -94,18 +91,24 @@ def train(args):
             trainer.checkpointer['rb'].save(global_step=step)
 
         if args.policy_vid_interval and step % args.policy_vid_interval == 0:
+            start_time = time.time()
+            logging.info("Saving policy video...")
             util.create_policy_eval_video(
-                trainer.eval_policy, eval_env, eval_py_env, 
-                os.path.join(args.eval_dir, 'videos'),
-                'trained-agent-step{:06d}'.format(step)
+                trainer.eval_policy, eval_env, eval_py_env,
+                'trained-agent-step{:06d}'.format(step),
+                os.path.join(args.eval_dir, 'videos'), fps=60
             )
+            logging.info("Save video time: {}".format(time.time() - start_time))
 
     if args.policy_vid_interval:
+        start_time = time.time()
+        logging.info("Saving policy video...")
         util.create_policy_eval_video(
             trainer.eval_policy, eval_env, eval_py_env,
-            os.path.join(args.eval_dir, 'videos'),
-            'trained-agent-step{:06d}-final'.format(step)
+            'trained-agent-step{:06d}-final'.format(step),
+            os.path.join(args.eval_dir, 'videos'), fps=60
         )
+        logging.info("Save video time: {}".format(time.time() - start_time))
 
 def main():
     tf.compat.v1.enable_v2_behavior()
@@ -114,6 +117,11 @@ def main():
 
     root = os.getcwd()
     arguments = config.parse(root=root)
+
+    # Purge if necessary
+    if arguments.purge:
+        print("Purging logs and summaries...")
+        util.purge(arguments)
 
     # Configure logger
     log_file = os.path.join(arguments.log_dir, '{}_{}.log'.format(

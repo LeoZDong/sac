@@ -17,17 +17,17 @@ def str2bool(v):
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
-def embed_mp4(filename):
-    """Embeds an mp4 file in the notebook."""
-    video = open(filename, 'rb').read()
-    b64 = base64.b64encode(video)
-    tag = '''
-    <video width="640" height="480" controls>
-    <source src="data:video/mp4;base64,{0}" type="video/mp4">
-    Your browser does not support the video tag.
-    </video>'''.format(b64.decode())
+# def embed_mp4(filename):
+#     """Embeds an mp4 file in the notebook."""
+#     video = open(filename, 'rb').read()
+#     b64 = base64.b64encode(video)
+#     tag = '''
+#     <video width="640" height="480" controls>
+#     <source src="data:video/mp4;base64,{0}" type="video/mp4">
+#     Your browser does not support the video tag.
+#     </video>'''.format(b64.decode())
 
-    return IPython.display.HTML(tag)
+#     return IPython.display.HTML(tag)
 
 
 def create_policy_eval_video(policy, env, py_env, filename, save_dir, 
@@ -45,27 +45,24 @@ def create_policy_eval_video(policy, env, py_env, filename, save_dir,
                 action_step = policy.action(time_step)
                 time_step = env.step(action_step.action)
                 video.append_data(py_env.render())
-    return embed_mp4(filename)
+    # return embed_mp4(filename)
 
-def purge_logs(root='./'):
-    dir = root
-    pattern = '^.*INFO.*$'
-    for f in os.listdir(dir):
-        print('logs', f)
+def purge_logs(log_dir):
+    # dir = os.path.join(root, )
+    # pattern = '^.*INFO.*$'
+    pattern = '^.*log'
+    for f in os.listdir(log_dir):
         if re.search(pattern, f):
-            print('match', f)
-            os.remove(os.path.join(dir, f))
+            os.remove(os.path.join(log_dir, f))
 
-def purge_summaries(root='./'):
-    dirs = [os.path.join(root, 'train'), os.path.join(root, 'eval')]
+def purge_summaries(train_dir, eval_dir):
+    dirs = [train_dir, eval_dir]
     pattern = 'events*'
-    for dir in dirs:
-        for sub_dir in os.listdir(dir):
-            for f in os.listdir(os.path.join(dir, sub_dir)):
-                print('sum', f)
-                if re.search(pattern, f):
-                    os.remove(os.path.join(dir, sub_dir, f))
+    for root_dir in dirs:
+        for f in os.listdir(root_dir):
+            if re.search(pattern, f):
+                os.remove(os.path.join(root_dir, f))
 
-def purge(root='./'):
-    purge_logs(root)
-    purge_summaries(root)
+def purge(args):
+    purge_logs(args.log_dir)
+    purge_summaries(args.train_dir, args.eval_dir)
